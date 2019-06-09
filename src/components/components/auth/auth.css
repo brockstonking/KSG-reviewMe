@@ -1,0 +1,68 @@
+.authParent {
+    width: 100%;
+    height: 50vh;
+    background-color: #454c5f;;
+    position: fixed;
+}
+
+.loginDiv {
+    width: 30%;
+    margin: auto;
+    margin-top: 150px;
+    background-color: #8BD8BD;
+    padding: 0px 100px 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px black;
+}
+
+.inputBox {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 3px solid #454c5f;;
+    margin: 15px;
+}
+
+.inputDiv {
+    display: flex;
+}
+
+p.loginReqP {
+    font-size: 30px;
+    padding-top: 55px;
+}
+
+.inputs {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.pageTitleCont {
+    margin: auto;
+    color: #8BD8BD;
+}
+
+.loginDiv {
+    width: 30%;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #8BD8BD;
+    padding: 0px 100px 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px black;
+    color: #454c5f;
+}
+
+.thanksCont {
+    font-size: 30px;
+    margin-bottom: -20px;
+    background-color: rgb(255, 255, 255, 0);
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 100px;
+    margin-right: auto;
+    box-shadow: 0px 0px 28px white;
+}
+
+
