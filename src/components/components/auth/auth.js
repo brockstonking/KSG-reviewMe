@@ -36,13 +36,18 @@ class Auth extends Component {
                 <div className='loginDiv'>
                     <div className='loginReq'>
                         <p className='loginReqP'>Please login to your account</p>
+                        <div></div>
                     </div>
                     <div className='inputs'>
                         <div className='usernameDiv inputDiv'>
                             <p>Username:</p><input className='usernameInputBox inputBox' onChange={ e => this.updateUsername( e.target.value ) } />
                         </div>
                         <div className='passwordDiv inputDiv'>
-                            <p>Password:</p><input className='passwordInputBox inputBox' onChange={ e => this.updatePassword( e.target.value ) } />
+                            <p>Password:</p><input className='passwordInputBox inputBox' type='password' onChange={ e => this.updatePassword( e.target.value ) } />
+                        </div>
+                        <div className='forgotPassCont'>
+                            <div></div>
+                            <p className='forgotPassLink'>Forgot your password?</p>
                         </div>
                     </div>
                 </div>

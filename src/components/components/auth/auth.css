@@ -1,4 +1,6 @@
-.authParent {
+/* The below is the original color scheme. */
+
+/* .authParent {
     width: 100%;
     height: 50vh;
     background-color: #454c5f;;
@@ -65,4 +67,91 @@ p.loginReqP {
     box-shadow: 0px 0px 28px white;
 }
 
+.passwordInputBox {
+    margin-left: 18px;
+}*/
 
+
+/* The below is the updated color scheme. */
+
+.authParent {
+    width: 100%;
+    height: 50vh;
+    background-color: #454c5f;;
+    position: fixed;
+}
+
+.inputBox {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 3px solid white;
+    margin: 15px;
+    caret-color: white;
+    color: white;
+}
+
+.inputDiv {
+    display: flex;
+}
+
+p.loginReqP {
+    font-size: 25px;
+    padding-top: 55px;
+    margin-left: -30px;
+}
+
+.loginReq {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputs {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.pageTitleCont {
+    margin: auto;
+    color: #8BD8BD;
+}
+
+.loginDiv {
+    width: 30%;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #303748;
+    padding: 0px 100px 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px black;
+    color: white;
+}
+
+.thanksCont {
+    font-size: 30px;
+    margin-bottom: -20px;
+    background-color: rgb(255, 255, 255, 0);
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 100px;
+    margin-right: auto;
+    box-shadow: 0px 0px 28px #8BD8BD;
+    color: white;
+}
+
+.passwordInputBox {
+    margin-left: 18px;
+}
+
+.forgotPassCont {
+    color: #8BD8BD;
+    font-size: 10px;
+}
+
+.forgotPassLink {
+    position: fixed;
+    right: calc(43% - 100px);
+    cursor: pointer;
+}
