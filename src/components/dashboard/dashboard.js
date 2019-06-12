@@ -3,6 +3,7 @@ import './dashboard.css';
 import Graph_reviews from './graph_reviews/graph_reviews';
 import Send_text from './send_text/send_text';
 import axios from 'axios';
+import Nav from './../nav/Nav';
 
 class Dashboard extends Component {
     constructor(props){
@@ -16,7 +17,6 @@ class Dashboard extends Component {
     verify(){
         axios.get('/auth/session')
         .then( results => {
-            console.log(results)
         })
     }
     render(){
@@ -24,7 +24,7 @@ class Dashboard extends Component {
             <div className='dashboardParent'>
                 <div>
                     Dashboard
-
+                    <Nav />
                     <Send_text />
                     <Graph_reviews />
                 </div>
