@@ -13,7 +13,7 @@ class Auth extends Component {
 
         this.updatePassword = this.updatePassword.bind( this );
         this.updateUsername = this.updateUsername.bind( this );
-        this.redirect = this.redirect.bind( this );
+        this.login = this.login.bind( this );
     };
 
     updateUsername(val){
@@ -24,13 +24,21 @@ class Auth extends Component {
 
     updatePassword(val){
         this.setState({
-            password: ''
+            password: val
         });
     };
 
     
-    redirect(){
-        this.props.history.push('/dashboard');
+    login(){
+        axios.post('/auth/login', { username: this.state.username, password: this.state.password })
+        .then( results => {
+            console.log(results)
+            this.props.history.push('/dashboard');
+        })
+        .catch( err => {
+            console.log(err)
+        })
+        
     }
 
     render(){
@@ -54,7 +62,7 @@ class Auth extends Component {
                         </div>
                         <div className='forgotPassCont'>
                             <p className='forgotPassLink'>Forgot your password?</p>
-                            <div onClick={ this.redirect } className='loginButton'><p className='loginWord'>LOGIN</p></div>
+                            <div onClick={ this.login } className='loginButton'><p className='loginWord'>LOGIN</p></div>
                         </div>
                     </div>
                 </div>
