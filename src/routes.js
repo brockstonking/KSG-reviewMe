@@ -1,15 +1,15 @@
-// import React from 'react';
-// import { Switch, Route } from 'react-router-dom';
-// import Auth from './components/Auth/Auth';
-// import Dashboard from './components/Dashboard/Dashboard';
-// import Form from './components/Form/Form';
-// import Post from './components/Post/Post';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Mood_selector from './components/mood_selector/mood_selector';
+import Dashboard from './components/dashboard/dashboard';
+import Auth from './components/auth/Auth';
+import Customer_form from './components/customer_form/customer_form';
 
-// export default (
-//         <Switch>
-//             <Route exact path='/' component={ Auth } />
-//             <Route path='/dashboard' component={ Dashboard } />
-//             <Route path='/post/:postid' component={ Post } />
-//             <Route path='/new' component={ Form } />
-//         </Switch>
-// )
+export default (
+        <Switch>
+            <Route exact path='/' component={ Auth } />
+            <Route path='/dashboard' component={ Dashboard } />
+            <Route exact path='/feedback' component={ Mood_selector } />
+            <Route path='/feedback/contact' component={ Customer_form } />
+        </Switch>
+)

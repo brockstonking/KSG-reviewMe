@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './send_text.css';
+import './graph.css';
 
-class Send_text extends Component {
+class Graph extends Component {
     render(){
         return(
             <div>
-
+                Graph
             </div>
         )
     }
 }
 
-export default Send_text;
+export default Graph;

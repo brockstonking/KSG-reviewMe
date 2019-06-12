@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './auth.css';
+import './Auth.css';
+import axios from 'axios';
 
 class Auth extends Component {
     constructor(props){
@@ -12,6 +13,7 @@ class Auth extends Component {
 
         this.updatePassword = this.updatePassword.bind( this );
         this.updateUsername = this.updateUsername.bind( this );
+        this.redirect = this.redirect.bind( this );
     };
 
     updateUsername(val){
@@ -26,6 +28,11 @@ class Auth extends Component {
         });
     };
 
+    
+    redirect(){
+        this.props.history.push('/dashboard');
+    }
+
     render(){
         return(
             <div className='authParent'>
@@ -39,15 +46,15 @@ class Auth extends Component {
                         <div></div>
                     </div>
                     <div className='inputs'>
-                        <div className='usernameDiv inputDiv'>
+                        <div className='usernameDiv authInputDiv'>
                             <p>Username:</p><input className='usernameInputBox inputBox' onChange={ e => this.updateUsername( e.target.value ) } />
                         </div>
-                        <div className='passwordDiv inputDiv'>
+                        <div className='passwordDiv authInputDiv'>
                             <p>Password:</p><input className='passwordInputBox inputBox' type='password' onChange={ e => this.updatePassword( e.target.value ) } />
                         </div>
                         <div className='forgotPassCont'>
-                            <div></div>
                             <p className='forgotPassLink'>Forgot your password?</p>
+                            <div onClick={ this.redirect } className='loginButton'><p className='loginWord'>LOGIN</p></div>
                         </div>
                     </div>
                 </div>

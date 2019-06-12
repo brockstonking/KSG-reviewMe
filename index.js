@@ -27,6 +27,13 @@ app.use(session({
   cookie: { maxAge: 1200000 }
 }))
 
+app.use( (req, res, next) => {
+  console.log(Date(), req);
+  next();
+})
+
+app.use(require('./router'));
+
 app.listen(SERVER_PORT, () => {
-    console.log(`Listening in on port ${ SERVER_PORT }`);
+    console.log(`Listening on port ${ SERVER_PORT }`);
 })

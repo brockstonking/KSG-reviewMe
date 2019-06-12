@@ -79,6 +79,7 @@ p.loginReqP {
     height: 50vh;
     background-color: #454c5f;;
     position: fixed;
+    box-shadow: 0px 5px 15px #777777;
 }
 
 .inputBox {
@@ -91,7 +92,7 @@ p.loginReqP {
     color: white;
 }
 
-.inputDiv {
+.authInputDiv {
     display: flex;
 }
 
@@ -121,7 +122,7 @@ p.loginReqP {
     width: 30%;
     margin: auto;
     margin-top: 40px;
-    background-color: #303748;
+    background-color: #777777;
     padding: 0px 100px 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 25px black;
@@ -152,6 +153,26 @@ p.loginReqP {
 
 .forgotPassLink {
     position: fixed;
-    right: calc(43% - 100px);
+    left: calc(43% - 100px);
     cursor: pointer;
+}
+
+.loginButton {
+    position: fixed;
+    right: calc(43% - 100px);
+    margin-top: 0px;
+    color: white;
+    background-color: #387D7A;
+    height: 30px;
+    width: 100px;
+    box-shadow: 0px 0px 5px #3a3a3a;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.loginWord {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: 600;
 }
