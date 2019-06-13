@@ -17,15 +17,15 @@ class Display_review extends Component{
     }
     render(){
         return(
-            <div>
-                <div>
-                    <p>{ this.state.howLongAgo }</p>
-                    <p>{ this.state.rating }</p>
-                    <img src={ this.state.image } alt='' />
-                    <p>{ this.state.author }</p>
+            <div className='displayReviewsParent'>
+                <div className='authorInformation'>>
+                    <p className='howLongAgo'>{ this.state.howLongAgo }</p>
+                    <p className='rating'>{ this.state.rating }</p>
+                    <img className='authorImage' src={ this.state.image } alt='' />
+                    <p className='authorName'>{ this.state.author }</p>
                 </div>
-                <div>
-                    { this.state.content }
+                <div className='reviewContentDiv'>
+                    <p className='reviewContentP'>{ this.state.content }</p>
                 </div>
             </div>
         )

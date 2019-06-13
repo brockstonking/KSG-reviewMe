@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER } = process.env;
+
 
 module.exports = {
     login: (req, res, next) => {
@@ -8,13 +10,15 @@ module.exports = {
 
         dbInstance.login_user([username, password])
         .then( results => {
+            console.log(results)
             const response = results[0];
             req.session.user = {
                 businessName: response.business_name,
                 email: response.email,
                 manager: response.manager,
                 place_id: response.place_id,
-                username: response.username
+                username: response.username,
+                location_id: response.location_id
             }
             res.status(200).send(req.session.user)
         })
@@ -41,5 +45,19 @@ module.exports = {
     },
     logout: (req, res, next) => {
         req.session.destroy();
+    },
+    sendMessage: (req, res, next) => {
+        const { message, number } = req.body;
+        client.messages
+      .create({
+         body: message,
+         from: '+12085161808',
+         to: number
+       })
+      .then(message => console.log(message.sid));
+    },
+    textInformation: (req, res, next) => {
+        const location_id = req.session.user.location_id;
+        res.status(200).send(`${location_id}`);
     }
 }
