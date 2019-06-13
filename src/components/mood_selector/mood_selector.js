@@ -5,7 +5,7 @@ class Mood_selector extends Component {
     render(){
         return(
             <div>
-
+                Feedback
             </div>
         )
     }

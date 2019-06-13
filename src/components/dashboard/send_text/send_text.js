@@ -9,9 +9,13 @@ class Send_text extends Component {
         super(props);
 
         this.sate = {
-            location_id: null
+            location_id: null,
+            bitly_link: ''
         }
+
+        this.sendText = this.sendText.bind( this );
     }
+
     componentDidMount(){
         axios.get('/api/textinformation')
         .then( results => {
@@ -21,10 +25,23 @@ class Send_text extends Component {
             console.log(this.state.location_id)
         })
     }
+
+    sendText(){
+        // const urlToSend = `http://reviewme.com/feedback/${ this.state.location_id }`
+        const urlToSend = 'https://www.google.com'
+        axios.post('/api/bitly', { long_url: urlToSend })
+        .then( results => {
+            this.setState({
+                bitly_link: results.data
+            })
+        })
+    }
+
     render(){
         return(
             <div>
                 Send text
+                <button onClick={ this.sendText }>Send</button>
                 <Last_ten />
             </div>
         )

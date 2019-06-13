@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER } = process.env;
+const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER, OATH_BITLY_TOKEN } = process.env;
 
 
 module.exports = {
@@ -59,5 +59,12 @@ module.exports = {
     textInformation: (req, res, next) => {
         const location_id = req.session.user.location_id;
         res.status(200).send(`${location_id}`);
+    },
+    generateBitly: (req, res, next) => {
+        const { long_url } = req.body;
+        axios.get(`https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`)
+        .then( results => {
+            res.status(200).send(results.data.data.link_lookup[0].aggregate_link)
+        })
     }
 }

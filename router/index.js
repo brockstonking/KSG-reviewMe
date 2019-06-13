@@ -8,5 +8,6 @@ router.get('/api/reviews', clientViewController.getLastFiveReviews)
 router.post('/auth/logout', clientViewController.logout);
 router.post('/api/send-message', clientViewController.sendMessage);
 router.get('/api/textinformation', clientViewController.textInformation);
+router.post('/api/bitly', clientViewController.generateBitly);
 
 module.exports = router;
