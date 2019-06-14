@@ -14,8 +14,8 @@ class Nav extends Component {
     }
     render(){
         return(
-            <div>
-                <Link to='/' onClick={ this.logout }><h1>logout</h1></Link>
+            <div className='navParent'>
+                <Link className='logoutButton' to='/' onClick={ this.logout }><h1>logout</h1></Link>
             </div>
         )
     }

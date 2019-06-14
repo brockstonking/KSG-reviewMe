@@ -1,0 +1,11 @@
+.navParent {
+    background-color: #387D7A;
+    height: 75px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    width: 96%;
+    position: fixed;
+    left: 2%;
+    box-shadow: 0 8px 13px -7px black;
+    top: 25px;
+}

@@ -22,11 +22,14 @@ class Dashboard extends Component {
     render(){
         return(
             <div className='dashboardParent'>
-                <div>
+                <div className='colorBar'></div>
+                <div className='dashboardDisplayComponents'>
                     Dashboard
                     <Nav />
+                <div className='sendAndGraph'>
                     <Send_text />
                     <Graph_reviews />
+                </div>
                 </div>
             </div>
         )

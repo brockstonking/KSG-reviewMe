@@ -66,5 +66,21 @@ module.exports = {
         .then( results => {
             res.status(200).send(results.data.data.link_lookup[0].aggregate_link)
         })
+    },
+    sendText: (req, res, next) => {
+        const accountSid = TWILIO_ACCOUNT_SID;
+        const authToken = TWILIO_AUTH_TOKEN;
+        const client = require('twilio')(accountSid, authToken);
+
+        const { phoneNumber, message, image } = req.body;
+
+        client.messages
+        .create({
+            body: message,
+            from: TWILIO_PHONE_NUMBER,
+            mediaUrl: image,
+            to: phoneNumber
+        })
+        .then(message => console.log(message.sid))
     }
 }

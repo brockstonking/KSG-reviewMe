@@ -29,7 +29,7 @@ class Reviews extends Component {
             return <Display_review key={ i } author={ e.author_name } authorThumbnail={ e.profile_photo_url } rating={ e.rating } howLongAgo={ e.relative_time_description } content={ e.text } />
         })
         return(
-            <div>
+            <div className='reviewsParent'>
                 { reviewList }
             </div>
         )

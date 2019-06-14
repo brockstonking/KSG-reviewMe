@@ -6,7 +6,7 @@ import Reviews from './reviews/reviews';
 class Graph_reviews extends Component {
     render(){
         return(
-            <div>
+            <div className='graph_reviewsParent'>
                 Graph reviews 
                 <Graph />
                 <Reviews />
