@@ -8,9 +8,12 @@ class Send_text extends Component {
     constructor(props){
         super(props);
 
-        this.sate = {
+        this.state = {
             location_id: null,
-            bitly_link: ''
+            bitly_link: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: ''
         }
 
         this.sendText = this.sendText.bind( this );
@@ -35,8 +38,22 @@ class Send_text extends Component {
         })
     }
 
+    updateInput(name, val){
+        this.setState({
+            [name]: val
+        })
+    }
+
     sendText(){
-        
+        axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber, bitlyLink: this.state.bitly_link })
+        .then (results => {
+            window.location.reload();
+        })
+        this.setState({
+            firstName: '',
+            lastName: '',
+            phoneNumber: ''
+        })
     }
 
     render(){
@@ -47,16 +64,16 @@ class Send_text extends Component {
                     <div className='firstLastName'>
                         <div className='firstNameDiv'>
                             <p className='firstNameReq'>First name:</p>
-                            <input className='firstInput sendInput' />
+                            <input value={ this.state.firstName } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='firstName' className='firstInput sendInput' />
                         </div>
                         <div className='lastNameDiv'>
                             <p className='lastNameReq'>Last name:</p>
-                            <input className='lastInput sendInput' />
+                            <input value={ this.state.lastName } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='lastName' className='lastInput sendInput' />
                         </div>
                     </div>
                     <div className='phoneDiv'>
                         <p className='phoneReq'>Phone number:</p>
-                        <input className='phoneInput sendInput' />
+                        <input value={ this.state.phoneNumber } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='phoneNumber' className='phoneInput sendInput' />
                     </div>
                     <button className='sendButton' onClick={ this.sendText }>Send</button>
                 </div>

@@ -10,7 +10,6 @@ module.exports = {
 
         dbInstance.login_user([username, password])
         .then( results => {
-            console.log(results)
             const response = results[0];
             req.session.user = {
                 businessName: response.business_name,
@@ -18,7 +17,8 @@ module.exports = {
                 manager: response.manager,
                 place_id: response.place_id,
                 username: response.username,
-                location_id: response.location_id
+                location_id: response.location_id,
+                user_id: response.user_id
             }
             res.status(200).send(req.session.user)
         })
@@ -46,16 +46,6 @@ module.exports = {
     logout: (req, res, next) => {
         req.session.destroy();
     },
-    sendMessage: (req, res, next) => {
-        const { message, number } = req.body;
-        client.messages
-      .create({
-         body: message,
-         from: '+12085161808',
-         to: number
-       })
-      .then(message => console.log(message.sid));
-    },
     textInformation: (req, res, next) => {
         const location_id = req.session.user.location_id;
         res.status(200).send(`${location_id}`);
@@ -68,19 +58,38 @@ module.exports = {
         })
     },
     sendText: (req, res, next) => {
+        const dbInstance = req.app.get('db');
         const accountSid = TWILIO_ACCOUNT_SID;
         const authToken = TWILIO_AUTH_TOKEN;
         const client = require('twilio')(accountSid, authToken);
+        const { phoneNumber, firstName, location_id, bitlyLink, lastName } = req.body;
 
-        const { phoneNumber, message, image } = req.body;
+        dbInstance.get_message_info([location_id])
+        .then( results => {
+            const imageURL = results[0].image_url;
+            const messageBase = results[0].text_message;
 
-        client.messages
-        .create({
-            body: message,
-            from: TWILIO_PHONE_NUMBER,
-            mediaUrl: image,
-            to: phoneNumber
+            const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ bitlyLink }`;
+            client.messages
+            .create({
+                body: message,
+                from: TWILIO_PHONE_NUMBER,
+                mediaUrl: imageURL,
+                to: '+1' + phoneNumber
+            })
+            .then(message => console.log(message.sid))
+
+            dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unread', location_id])
+            .then( () => {
+                res.status(200).send('Message sent')
+            })
+
         })
-        .then(message => console.log(message.sid))
+
+
+
+
+
+        
     }
 }
