@@ -11,5 +11,6 @@ router.get('/api/textinformation', clientViewController.textInformation);
 router.post('/api/bitly', clientViewController.generateBitly);
 router.get('/api/lasttenmessages', clientViewController.getLastTenMessages);
 router.get('/auth/getsession', clientViewController.getSession);
+router.post('/api/sentmessages/getall', clientViewController.getAllSent);
 
 module.exports = router;

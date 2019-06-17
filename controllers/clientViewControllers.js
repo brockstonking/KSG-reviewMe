@@ -83,11 +83,11 @@ module.exports = {
             })
             .then(message => {
                 console.log(message.sid);
-                dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unread', location_id, messageDate])
+            })
+            dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unopened', location_id, messageDate, messageDateClass.getMonth() + 1, messageDateClass.getFullYear()])
                 .then( () => {
                     res.status(200).send('Message sent')
                 })
-            })
         })
     },
     getLastTenMessages: (req, res, next) => {
@@ -113,5 +113,17 @@ module.exports = {
     },
     getSession: (req, res, next) => {
         res.status(200).send(req.session.user)
+    },
+    getAllSent: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const { currentYear } = req.body;
+        const lastYear = currentYear - 1
+
+        dbInstance.get_message_graph_sent([currentYear, lastYear])
+        .then( results => {
+            res.status(200).send(results)
+        }
+        )
+
     }
 }
