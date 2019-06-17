@@ -26,15 +26,6 @@ class Send_text extends Component {
             this.setState({
                 location_id: results.data
             })
-            // const urlToSend = `http://reviewme.com/feedback/${ this.state.location_id }`
-            const urlToSend = 'https://www.google.com'
-            axios.post('/api/bitly', { long_url: urlToSend })
-            .then( results => {
-                this.setState({
-                    bitly_link: results.data
-                })
-                console.log(results.data)
-            })
         })
     }
 
@@ -45,15 +36,22 @@ class Send_text extends Component {
     }
 
     sendText(){
-        axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber, bitlyLink: this.state.bitly_link })
-        .then (results => {
-            window.location.reload();
+        // const urlToSend = `http://reviewme.com/feedback/${ this.state.location_id }?customerphone=${ this.state.phoneNumber }`
+        const urlToSend = 'https://www.google.com'
+        axios.post('/api/bitly', { long_url: urlToSend })
+        .then( results => {
+            axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber, bitlyLink: results.data })
+            .then (results => {
+                window.location.reload();
+            })
+            this.setState({
+                firstName: '',
+                lastName: '',
+                phoneNumber: ''
+            })
         })
-        this.setState({
-            firstName: '',
-            lastName: '',
-            phoneNumber: ''
-        })
+
+        
     }
 
     render(){
