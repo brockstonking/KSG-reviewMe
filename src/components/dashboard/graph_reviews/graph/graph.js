@@ -252,7 +252,7 @@ class Graph extends Component {
         ]
         return(
             <div className='graphComponentParent'>
-                <h3>Message interaction rates over the last 12 Months</h3>
+                <h3 className='messageInteractionGraphTitle'>Message interaction rates over the last 12 Months</h3>
                 <LineChart data={ data } />
             </div>
         )

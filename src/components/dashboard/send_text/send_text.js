@@ -10,7 +10,6 @@ class Send_text extends Component {
 
         this.state = {
             location_id: null,
-            bitly_link: '',
             firstName: '',
             lastName: '',
             phoneNumber: ''
@@ -18,8 +17,7 @@ class Send_text extends Component {
 
         this.sendText = this.sendText.bind( this );
     }
-    // on function below, location id is set and a request is sent to the server for a bit.ly link. Bit.ly link is then
-    // stored in state for use in sending an axios.post request to send a message. 
+    
     componentDidMount(){
         axios.get('/api/textinformation')
         .then( results => {
@@ -36,22 +34,15 @@ class Send_text extends Component {
     }
 
     sendText(){
-        // const urlToSend = `http://reviewme.com/feedback/${ this.state.location_id }?customerphone=${ this.state.phoneNumber }`
-        const urlToSend = 'https://www.google.com'
-        axios.post('/api/bitly', { long_url: urlToSend })
-        .then( results => {
-            axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber, bitlyLink: results.data })
-            .then (results => {
-                window.location.reload();
-            })
+        axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber })
+        .then (results => {
             this.setState({
                 firstName: '',
                 lastName: '',
                 phoneNumber: ''
             })
-        })
-
-        
+            window.location.reload();
+        })   
     }
 
     render(){

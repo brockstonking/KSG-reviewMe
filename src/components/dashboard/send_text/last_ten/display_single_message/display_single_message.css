@@ -15,4 +15,6 @@
 
 .nameDiv {
     display: flex;
+    width: 115px;
+    flex-wrap: wrap;
 }

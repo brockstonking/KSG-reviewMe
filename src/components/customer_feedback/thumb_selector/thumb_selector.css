@@ -1,0 +1,49 @@
+.thumbsDown {
+    height: 150px;
+    margin-top: 40px;
+    margin-right: 30px;
+    margin-left: -20px;
+}
+
+.thumbsUp {
+    height: 225px;
+    margin-top: 25px;
+    margin-left: -25px;
+}
+
+.thumb {
+    transform: scaleX(-1);
+}
+
+.thumbsDiv {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.feedbackSelectorParent {
+    background-color: #e2e2e2;
+    width: 90%;
+    margin-top: 25px;
+    margin-left: 5%;
+    box-shadow: 0px 0px 14px black;
+    height: calc(100vh - 50px);
+    padding: 1px;
+}
+
+.feedbackColorBar {
+    margin-left: -5%;
+}
+
+.welcomeAndInstructionsDiv {
+    margin: 50px auto;
+    width: 85%;
+}
+
+.afterClickInstructions {
+    width: 85%;
+    margin: auto;
+}
