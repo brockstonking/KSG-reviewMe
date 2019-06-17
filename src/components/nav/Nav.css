@@ -8,4 +8,22 @@
     left: 2%;
     box-shadow: 0 8px 13px -7px black;
     top: 25px;
+    color: white;
+}
+
+/* possible background-color for navParent: #ad9e58 */
+
+.logoutButton {
+    text-decoration: none;
+}
+
+.logoutText {
+    color: white;
+}
+
+.menuItems {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
 }

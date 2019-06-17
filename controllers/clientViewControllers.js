@@ -18,7 +18,8 @@ module.exports = {
                 place_id: response.place_id,
                 username: response.username,
                 location_id: response.location_id,
-                user_id: response.user_id
+                user_id: response.user_id,
+                business_id: response.business_id
             }
             res.status(200).send(req.session.user)
         })
@@ -70,6 +71,9 @@ module.exports = {
             const messageBase = results[0].text_message;
 
             const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ bitlyLink }`;
+
+            const messageDateClass = new Date();
+            const messageDate = messageDateClass.getMonth() + 1 + '/' + messageDateClass.getDate() + '/' + messageDateClass.getFullYear()
             client.messages
             .create({
                 body: message,
@@ -77,19 +81,37 @@ module.exports = {
                 mediaUrl: imageURL,
                 to: '+1' + phoneNumber
             })
-            .then(message => console.log(message.sid))
-
-            dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unread', location_id])
-            .then( () => {
-                res.status(200).send('Message sent')
+            .then(message => {
+                console.log(message.sid);
+                dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unread', location_id, messageDate])
+                .then( () => {
+                    res.status(200).send('Message sent')
+                })
             })
-
         })
+    },
+    getLastTenMessages: (req, res, next) => {
+        const dbInstance = req.app.get('db');
 
-
-
-
-
-        
+        if (req.session.user.manager === 'true') {
+            dbInstance.get_business_messages([req.session.user.business_id])
+            .then( results => {
+                res.status(200).send(results)
+            })
+            .catch( err => {
+                res.status(500).send(err)
+            })
+        } else {
+            dbInstance.get_user_messages([req.session.user.user_id])
+            .then( results => {
+                res.status(200).send(results)
+            })
+            .catch( err => {
+                res.status(500).send(err)
+            })
+        }
+    },
+    getSession: (req, res, next) => {
+        res.status(200).send(req.session.user)
     }
 }

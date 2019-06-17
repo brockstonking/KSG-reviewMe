@@ -30,6 +30,7 @@ class Reviews extends Component {
         })
         return(
             <div className='reviewsParent'>
+                <h3>Last 5 reviews left on your google listing</h3>
                 { reviewList }
             </div>
         )

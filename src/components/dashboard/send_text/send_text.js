@@ -58,26 +58,28 @@ class Send_text extends Component {
 
     render(){
         return(
-            <div className='send_textParent'>
-                Send text
-                <div className='inputsDiv'>
-                    <div className='firstLastName'>
-                        <div className='firstNameDiv'>
-                            <p className='firstNameReq'>First name:</p>
-                            <input value={ this.state.firstName } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='firstName' className='firstInput sendInput' />
+            <div className='textInfoParent'>
+                <div className='send_textParent'>
+                    <h3 className='directionTitle'>Enter a customer's information below to send a review request to their cell phone</h3>
+                    <div className='inputsDiv'>
+                        <div className='firstLastName'>
+                            <div className='firstNameDiv'>
+                                <p className='firstNameReq'>First name:</p>
+                                <input value={ this.state.firstName } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='firstName' className='firstInput sendInput' />
+                            </div>
+                            <div className='lastNameDiv'>
+                                <p className='lastNameReq'>Last name:</p>
+                                <input value={ this.state.lastName } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='lastName' className='lastInput sendInput' />
+                            </div>
                         </div>
-                        <div className='lastNameDiv'>
-                            <p className='lastNameReq'>Last name:</p>
-                            <input value={ this.state.lastName } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='lastName' className='lastInput sendInput' />
+                        <div className='phoneDiv'>
+                            <p className='phoneReq'>Cell number:</p>
+                            <input value={ this.state.phoneNumber } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='phoneNumber' className='phoneInput sendInput' />
                         </div>
+                        <div className='sendTextButton' onClick={ this.sendText }><p className='sendTextWord'>Send</p></div>
                     </div>
-                    <div className='phoneDiv'>
-                        <p className='phoneReq'>Phone number:</p>
-                        <input value={ this.state.phoneNumber } onChange={ e => this.updateInput( e.target.name, e.target.value ) } name='phoneNumber' className='phoneInput sendInput' />
-                    </div>
-                    <button className='sendButton' onClick={ this.sendText }>Send</button>
                 </div>
-                <div>
+                <div className='lastTenDiv'>
                     <Last_ten />
                 </div>
             </div>

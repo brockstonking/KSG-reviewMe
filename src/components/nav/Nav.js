@@ -5,6 +5,22 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Nav extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            username: ''
+        }
+    }
+
+    componentDidMount(){
+        axios.get('/auth/getsession')
+        .then( results => {
+            this.setState({
+                username: results.data.username
+            })
+        })
+    }
 
     logout(){
         axios.post('/auth/logout')
@@ -15,7 +31,10 @@ class Nav extends Component {
     render(){
         return(
             <div className='navParent'>
-                <Link className='logoutButton' to='/' onClick={ this.logout }><h1>logout</h1></Link>
+                <div className='menuItems'>
+                    <h1 className='welcomeLog'>Welcome, { this.state.username }</h1>
+                    <Link className='logoutButton' to='/' onClick={ this.logout }><h1 className='logoutText'>logout</h1></Link>
+                </div>
             </div>
         )
     }

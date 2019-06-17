@@ -1,31 +1,65 @@
 .send_textParent {
     margin-left: 25px;
     margin-top: 60px;
-    height: 200px;
-    padding: 100px;
+    height: 320px;
     background-color: #777777;
     border-radius: 10px;
     box-shadow: 0px 0px 10px black;
     color: white;
-    font-size: 20px;
+    font-size: 19px;
+    padding: 1px;
 }
 
-
+.textInfoParent {
+    width: 335px;
+}
 
 .firstNameDiv {
     display: flex;
+    justify-content: space-between;
 }
 
 .lastNameDiv {
     display: flex;
+    justify-content: space-between;
 }
 
 .phoneDiv {
     display: flex;
+    justify-content: space-between;
 }
 
 .sendInput {
     height: 13px;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 10px;
+}
+
+.inputsDiv {
+    margin: auto;
+    width: 250px;
+}
+
+.directionTitle {
+    font-size: 20px;
+    width: 250px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.sendTextButton {
+    color: white;
+    background-color: #387D7A;
+    height: 30px;
+    width: 100px;
+    box-shadow: 0px 0px 5px #3a3a3a;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.sendTextWord {
+    margin-top: 4px;
+    font-size: 15px;
+    font-weight: 600;
 }

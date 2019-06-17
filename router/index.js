@@ -9,5 +9,7 @@ router.post('/auth/logout', clientViewController.logout);
 router.post('/api/sendmessage', clientViewController.sendText);
 router.get('/api/textinformation', clientViewController.textInformation);
 router.post('/api/bitly', clientViewController.generateBitly);
+router.get('/api/lasttenmessages', clientViewController.getLastTenMessages);
+router.get('/auth/getsession', clientViewController.getSession);
 
 module.exports = router;

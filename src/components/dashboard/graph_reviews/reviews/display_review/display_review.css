@@ -1,0 +1,38 @@
+.starDisplayDiv {
+    display: flex;
+    margin-top: 14px;
+    margin-right: 20px;
+}
+
+.ratingStarIndividual {
+    width: 20px;
+    height: 20px;
+    margin-right: 1px;
+}
+
+.authorImageAndName {
+    display: flex;
+}
+
+.authorImage {
+    width: 50px;
+}
+
+.authorName {
+    margin: 10px;
+}
+
+.ratingAndTimeAgo {
+    display: flex;
+    margin-left: 10px;
+}
+
+.reviewContentDiv {
+    text-align: left;
+}
+
+.displayReviewsParent {
+    margin-bottom: 50px;
+    width: 90%;
+    margin: auto;
+}
