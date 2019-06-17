@@ -119,7 +119,7 @@ module.exports = {
         const { currentYear } = req.body;
         const lastYear = currentYear - 1
 
-        dbInstance.get_message_graph_sent([currentYear, lastYear])
+        dbInstance.get_message_graph_sent([currentYear, lastYear, req.session.user.business_id])
         .then( results => {
             res.status(200).send(results)
         }
