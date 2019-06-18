@@ -157,14 +157,18 @@ class Graph extends Component {
                 } else if (e.month === currentMonthNumbers[i] && e.year === yearOrder[i] && e.interaction_status === 'Thumbs up') {
                     const toPush = `up${i}`
                     const toPushAll = `all${i}`
+                    const toPushInteraction = `interacted${i}`
                     this.setState({
+                        [toPushInteraction]: [...this.state[toPushInteraction], e],
                         [toPush]: [...this.state[toPush], e],
                         [toPushAll]: [...this.state[toPushAll], e]
                     })
                 } else if (e.month === currentMonthNumbers[i] && e.year === yearOrder[i] && e.interaction_status === 'Thumbs down') {
                     const toPush = `down${i}`
                     const toPushAll = `all${i}`
+                    const toPushInteraction = `interacted${i}`
                     this.setState({
+                        [toPushInteraction]: [...this.state[toPushInteraction], e],
                         [toPush]: [...this.state[toPush], e],
                         [toPushAll]: [...this.state[toPushAll], e]
                     })

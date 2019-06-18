@@ -60,7 +60,6 @@ module.exports = {
 
         dbInstance.get_message_info([location_id])
         .then( results => {
-            debugger
             const imageURL = results[0].image_url; 
             const messageBase = results[0].text_message;
 
@@ -70,13 +69,13 @@ module.exports = {
             dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unopened', location_id, messageDate, messageDateClass.getMonth() + 1, messageDateClass.getFullYear()])
                 .then( results => {
                     const messageId = results[0].message_id;
-                    const long_url = `https://927b28f3.ngrok.io/feedback/${ messageId }`
+                    // const long_url = `https://927b28f3.ngrok.io/feedback/${ messageId }` The below is for dev purpose only
+                    const long_url = 'https://www.google.com';
                     const link = `https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`
-                    debugger
                     axios.get(link)
                     .then( results => {
-                        debugger
-                        const bitlyLink = results.data.data.link_lookup[0].aggregate_link;
+                        // const bitlyLink = results.data.data.link_lookup[0].aggregate_link; the below is for dev purposes only
+                        const bitlyLink = `https://8be91ea9.ngrok.io/feedback/${ messageId }`
                         const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ bitlyLink }`;
 
                         client.messages
@@ -87,7 +86,6 @@ module.exports = {
                             to: '+1' + phoneNumber
                         })
                         .then(message => {
-                            debugger
                             console.log(message.sid);
                             res.status(200).send('Message sent')
                         })

@@ -8,10 +8,17 @@ class FeedbackForm extends Component {
         this.state = {
             name: '',
             phone: '',
-            feedback: ''
+            feedback: '',
+            business_id: null
         }
 
         this.udpateState = this.udpateState.bind( this );
+    }
+
+    componentWillMount(){
+        this.setState({
+            business_id: this.props.match.params.businessid
+        })
     }
 
     udpateState(e){
@@ -30,7 +37,7 @@ class FeedbackForm extends Component {
                     <input onChange={ e => this.udpateState(e) } name='name' className='nameInput feedbackFormInput' />
                     <p className='phoneReq'>Phone:</p>
                     <input onChange={ e => this.udpateState(e) } name='phone' className='phoneInput feedbackFormInput' />
-                    <p className='feedbackReq'>What we can do to improve:</p>
+                    <p className='feedbackReq'>How we can improve:</p>
                     <textarea rows='8' onChange={ e => this.udpateState(e) } name='feedback' className='feedbackInput feedbackFormInput' />
                 </div>
                 <div className='submitButtonDiv'>
