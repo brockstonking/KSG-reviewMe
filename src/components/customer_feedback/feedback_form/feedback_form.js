@@ -10,19 +10,31 @@ class FeedbackForm extends Component {
             phone: '',
             feedback: ''
         }
+
+        this.udpateState = this.udpateState.bind( this );
+    }
+
+    udpateState(e){
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     render(){
         return(
             <div className='feedbackFormParent'>
                 <div className='colorBar feedbackColorBar'></div>
-                <div className='inputsDiv'>
-                    <p>Name:</p>
-                    <input />
-                    <p>Phone:</p>
-                    <input />
-                    <p>Feedback:</p>
-                    <textarea />
+                <div className='titleHowDiv' ><h3 className='titleHowText'>Please let us know how we can improve!</h3></div>
+                <div className='feedbackInputsDiv inputsDiv'>
+                    <p className='nameReq'>Name:</p>
+                    <input onChange={ e => this.udpateState(e) } name='name' className='nameInput feedbackFormInput' />
+                    <p className='phoneReq'>Phone:</p>
+                    <input onChange={ e => this.udpateState(e) } name='phone' className='phoneInput feedbackFormInput' />
+                    <p className='feedbackReq'>What we can do to improve:</p>
+                    <textarea rows='8' onChange={ e => this.udpateState(e) } name='feedback' className='feedbackInput feedbackFormInput' />
+                </div>
+                <div className='submitButtonDiv'>
+                    <div className='submitButton'><p className='submitButtonText'>Submit</p></div>
                 </div>
             </div>
         )

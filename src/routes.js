@@ -10,6 +10,6 @@ export default (
             <Route exact path='/' component={ Auth } />
             <Route path='/dashboard' component={ Dashboard } />
             <Route exact path='/feedback/:locationid' component={ ThumbSelector } />
-            <Route path='/feedback/form' component={ FeedbackForm } />
+            <Route path='/customer_feedback/form' component={ FeedbackForm } />
         </Switch>
 )

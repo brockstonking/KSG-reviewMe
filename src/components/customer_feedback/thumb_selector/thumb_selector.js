@@ -14,6 +14,8 @@ class ThumbSelector extends Component {
             place_id: null,
             display_platform_selection: null
         }
+
+        this.thumbsDown = this.thumbsDown.bind( this );
     }
 
     componentWillMount(){
@@ -29,6 +31,10 @@ class ThumbSelector extends Component {
         })
     }
 
+    thumbsDown(){
+        this.props.history.push('/customer_feedback/form')
+    }
+
     render(){
         const nameTitle = `Hi, ${ this.state.name }!`
         const instructionsText = `Thank you for choosing ${ this.state.locationName }.`
@@ -42,7 +48,7 @@ class ThumbSelector extends Component {
                 </div>
                 <div className='thumbsDiv'>
                     <a href={`https://search.google.com/local/writereview?placeid=${ this.state.place_id }`} ><img className='thumbsUp thumb' src='http://assets.stickpng.com/thumbs/5a0abc585a997e1c2cea106e.png' alt='' /></a>
-                    <Link to='/feedback/form'><img className='thumbsDown thumb' src='http://assets.stickpng.com/thumbs/5a0abcbf5a997e1c2cea106f.png' alt='' /></Link>
+                    <img onClick={ this.thumbsDown } className='thumbsDown thumb' src='http://assets.stickpng.com/thumbs/5a0abcbf5a997e1c2cea106f.png' alt='' />
                 </div>
                 <p className='afterClickInstructions'>After making your selection, please follow the prompts to leave your review.</p>
             </div>

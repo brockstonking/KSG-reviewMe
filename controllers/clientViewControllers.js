@@ -51,15 +51,7 @@ module.exports = {
         const location_id = req.session.user.location_id;
         res.status(200).send(`${location_id}`);
     },
-    generateBitly: (req, res, next) => {
-        const { long_url } = req.body;
-        axios.get(`https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`)
-        .then( results => {
-            res.status(200).send(results.data.data.link_lookup[0].aggregate_link)
-        })
-    },
     sendTextTest: (req, res, next) => {
-        debugger
         const dbInstance = req.app.get('db');
         const accountSid = TWILIO_ACCOUNT_SID;
         const authToken = TWILIO_AUTH_TOKEN;
@@ -68,7 +60,8 @@ module.exports = {
 
         dbInstance.get_message_info([location_id])
         .then( results => {
-            const imageURL = results[0].image_url;
+            debugger
+            const imageURL = results[0].image_url; 
             const messageBase = results[0].text_message;
 
 
@@ -76,12 +69,13 @@ module.exports = {
             const messageDate = messageDateClass.getMonth() + 1 + '/' + messageDateClass.getDate() + '/' + messageDateClass.getFullYear();
             dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unopened', location_id, messageDate, messageDateClass.getMonth() + 1, messageDateClass.getFullYear()])
                 .then( results => {
-                    // switch out long_url for actual url upon deployment
-                    // const messageId = results[0].message_id;
-                    // const long_url = `http://reviewme.com/feedback/${ messageId }`
-                    const long_url = 'https://www.google.com'
-                    axios.get(`https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`)
+                    const messageId = results[0].message_id;
+                    const long_url = `https://927b28f3.ngrok.io/feedback/${ messageId }`
+                    const link = `https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`
+                    debugger
+                    axios.get(link)
                     .then( results => {
+                        debugger
                         const bitlyLink = results.data.data.link_lookup[0].aggregate_link;
                         const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ bitlyLink }`;
 
@@ -93,42 +87,11 @@ module.exports = {
                             to: '+1' + phoneNumber
                         })
                         .then(message => {
+                            debugger
                             console.log(message.sid);
                             res.status(200).send('Message sent')
                         })
                     })
-                })
-        })
-    },
-    sendText: (req, res, next) => {
-        const dbInstance = req.app.get('db');
-        const accountSid = TWILIO_ACCOUNT_SID;
-        const authToken = TWILIO_AUTH_TOKEN;
-        const client = require('twilio')(accountSid, authToken);
-        const { phoneNumber, firstName, location_id, bitlyLink, lastName } = req.body;
-
-        dbInstance.get_message_info([location_id])
-        .then( results => {
-            const imageURL = results[0].image_url;
-            const messageBase = results[0].text_message;
-
-            const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ bitlyLink }`;
-
-            const messageDateClass = new Date();
-            const messageDate = messageDateClass.getMonth() + 1 + '/' + messageDateClass.getDate() + '/' + messageDateClass.getFullYear()
-            client.messages
-            .create({
-                body: message,
-                from: TWILIO_PHONE_NUMBER,
-                mediaUrl: imageURL,
-                to: '+1' + phoneNumber
-            })
-            .then(message => {
-                console.log(message.sid);
-            })
-            dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unopened', location_id, messageDate, messageDateClass.getMonth() + 1, messageDateClass.getFullYear()])
-                .then( () => {
-                    res.status(200).send('Message sent')
                 })
         })
     },
