@@ -13,5 +13,7 @@ router.get('/auth/getsession', clientViewController.getSession);
 router.post('/api/sentmessages/getall', clientViewController.getAllSent);
 router.get('/api/test', clientViewController.test);
 router.post('/api/messageinformation', clientViewController.getFeedbackInfo);
+router.post('/api/message/thumbsup', clientViewController.thumbsUp);
+router.post('/api/message/thumbsdown', clientViewController.thumbsDown);
 
 module.exports = router;

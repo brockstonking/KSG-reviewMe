@@ -9,7 +9,7 @@ export default (
         <Switch>
             <Route exact path='/' component={ Auth } />
             <Route path='/dashboard' component={ Dashboard } />
-            <Route exact path='/feedback/:locationid' component={ ThumbSelector } />
-            <Route path='/customer_feedback/form' component={ FeedbackForm } />
+            <Route exact path='/feedback/:messageid' component={ ThumbSelector } />
+            <Route path='/customer_feedback/form/:businessid' component={ FeedbackForm } />
         </Switch>
 )

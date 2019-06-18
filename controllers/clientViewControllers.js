@@ -139,11 +139,22 @@ module.exports = {
     },
     getFeedbackInfo: (req, res, next) => {
         const dbInstance = req.app.get('db');
-        const { location_id } = req.body;
+        const { message_id } = req.body;
 
-        dbInstance.get_feedback_info([location_id])
+        dbInstance.get_feedback_info([message_id])
         .then( results => {
+            dbInstance.mark_message_opened([message_id])
             res.status(200).send(results)
         })
+    },
+    thumbsDown: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const { message_id } = req.body;
+        dbInstance.mark_message_thumbs_down([message_id])
+    },
+    thumbsUp: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const { message_id } = req.body;
+        dbInstance.mark_message_thumbs_up([message_id])
     }
 }
