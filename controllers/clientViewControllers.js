@@ -154,5 +154,14 @@ module.exports = {
         const dbInstance = req.app.get('db');
         const { message_id } = req.body;
         dbInstance.mark_message_thumbs_up([message_id])
+    },
+    submitCustomerFeedback: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const { name, phone, feedback, business_id } = req.body;
+
+        dbInstance.submit_customer_feedback([name, phone, feedback, business_id])
+        .then( () => {
+            res.status(200).send('Feedback submitted')
+        })
     }
 }

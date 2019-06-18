@@ -15,5 +15,6 @@ router.get('/api/test', clientViewController.test);
 router.post('/api/messageinformation', clientViewController.getFeedbackInfo);
 router.post('/api/message/thumbsup', clientViewController.thumbsUp);
 router.post('/api/message/thumbsdown', clientViewController.thumbsDown);
+router.post('/api/submitcustomerfeedback', clientViewController.submitCustomerFeedback);
 
 module.exports = router;
