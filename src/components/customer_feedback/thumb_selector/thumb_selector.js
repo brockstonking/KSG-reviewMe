@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './thumb_selector.css';
 import axios from 'axios'; 
+import { Link } from 'react-router-dom';
 
 class ThumbSelector extends Component {
     constructor(props){
@@ -10,7 +11,8 @@ class ThumbSelector extends Component {
             name: '',
             locationName: '',
             location_id: null,
-            place_id: null
+            place_id: null,
+            display_platform_selection: null
         }
     }
 
@@ -39,8 +41,8 @@ class ThumbSelector extends Component {
                     <h2 className='howDidWeDo'>How did we do?</h2>
                 </div>
                 <div className='thumbsDiv'>
-                    <img className='thumbsUp thumb' src='http://assets.stickpng.com/thumbs/5a0abc585a997e1c2cea106e.png' alt='' />
-                    <img className='thumbsDown thumb' src='http://assets.stickpng.com/thumbs/5a0abcbf5a997e1c2cea106f.png' alt='' />
+                    <a href={`https://search.google.com/local/writereview?placeid=${ this.state.place_id }`} ><img className='thumbsUp thumb' src='http://assets.stickpng.com/thumbs/5a0abc585a997e1c2cea106e.png' alt='' /></a>
+                    <Link to='/feedback/form'><img className='thumbsDown thumb' src='http://assets.stickpng.com/thumbs/5a0abcbf5a997e1c2cea106f.png' alt='' /></Link>
                 </div>
                 <p className='afterClickInstructions'>After making your selection, please follow the prompts to leave your review.</p>
             </div>

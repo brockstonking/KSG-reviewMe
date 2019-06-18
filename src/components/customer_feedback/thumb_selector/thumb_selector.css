@@ -21,7 +21,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: -30px;
 }
 
 .feedbackSelectorParent {
@@ -32,6 +32,7 @@
     box-shadow: 0px 0px 14px black;
     height: calc(100vh - 50px);
     padding: 1px;
+    position: relative;
 }
 
 .feedbackColorBar {
@@ -45,5 +46,7 @@
 
 .afterClickInstructions {
     width: 85%;
-    margin: auto;
+    left: 7%;
+    position: absolute;
+    bottom: 50px;
 }
