@@ -8,21 +8,35 @@ module.exports = {
         const dbInstance = req.app.get('db');
         const { username, password } = req.body;
 
-        dbInstance.login_user([username, password])
+        dbInstance.check_admin([username, password])
         .then( results => {
-            const response = results[0];
-            req.session.user = {
-                businessName: response.business_name,
-                email: response.email,
-                manager: response.manager,
-                place_id: response.place_id,
-                username: response.username,
-                location_id: response.location_id,
-                user_id: response.user_id,
-                business_id: response.business_id
+            if (results[0].is_admin === 'yes') {
+                const response = results[0];
+                req.session.user = {
+                    username: response.username,
+                    is_admin: true
+                }
+                res.status(200).send(req.session.user)
+            } else {
+                dbInstance.login_user([username, password])
+                .then( results => {
+                    const response = results[0];
+                    req.session.user = {
+                        businessName: response.business_name,
+                        email: response.email,
+                        manager: response.manager,
+                        place_id: response.place_id,
+                        username: response.username,
+                        location_id: response.location_id,
+                        user_id: response.user_id,
+                        business_id: response.business_id,
+                        is_admin: false
+                    }
+                    res.status(200).send(req.session.user)
+                })
             }
-            res.status(200).send(req.session.user)
         })
+
         
     },
     verify: (req, res, next) => {
@@ -162,6 +176,24 @@ module.exports = {
         dbInstance.submit_customer_feedback([name, phone, feedback, business_id])
         .then( () => {
             res.status(200).send('Feedback submitted')
+        })
+    },
+    getAllSentForBusiness: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const { business_id } = req.body;
+
+        dbInstance.get_all_sent_from_business([business_id])
+        .then( results => {
+            res.status(200).send(results)
+        })
+    },
+    getBusinessFeedback: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const { business_id } = req.body;
+
+        dbInstance.get_business_feedback([business_id])
+        .then( results => {
+            res.status(200).send(results)
         })
     }
 }

@@ -23,7 +23,32 @@
 
 .menuItems {
     display: flex;
-    width: 90%;
-    margin: auto;
+    width: 85%;
+    margin-left: 5%;
     justify-content: space-between;
+}
+
+.navBarMenuIcon {
+    width: 50px;
+    height: 60px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.navBarMenuIcon:hover .navBarMenuItemsDisplayParentDiv {
+    height: 300px;
+}
+
+.navBarMenuItemsDisplayParentDiv {
+    position: fixed;
+    top: 100px;
+    right: 2%;
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.25s ease-in-out;
+}
+
+.navBarMenuIconDiv {
+    height: 70px;
 }

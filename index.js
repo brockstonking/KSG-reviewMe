@@ -27,12 +27,20 @@ app.use(session({
   cookie: { maxAge: 1200000 }
 }))
 
+app.use(express.static(path.join(_dirname, '/build')));
+
 app.use( (req, res, next) => {
   console.log(Date(), req);
   next();
 })
 
 app.use(require('./router'));
+
+app.get('/*', (req, res) => {
+  res.sendFile('index.html', {
+    root: path.join(_dirname, "build")
+  })
+});
 
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on port ${ SERVER_PORT }`);

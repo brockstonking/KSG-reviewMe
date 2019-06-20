@@ -1,0 +1,10 @@
+.allSentContentTitle {
+    margin-top: 100px;
+}
+
+.messageListDiv {
+    overflow: auto;
+    height: 70vh;
+    width: 80%;
+    margin: auto;
+}

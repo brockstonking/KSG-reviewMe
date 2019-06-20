@@ -1,0 +1,19 @@
+.menuItemDisplayParent {
+    background-color: #e2e2e2;
+    border: solid black 1px;
+    text-align: left;
+    width: 300px;
+}
+
+.menuItemDisplayLink {
+    text-decoration: none;
+    color: black;
+}
+
+.menuItemDisplayTitle {
+    margin-left: 25px;
+}
+
+.menuItemDisplayParent:hover {
+    background-color: #c5c4c4;
+}

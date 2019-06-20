@@ -2,6 +2,7 @@
     display: flex;
     margin-top: 14px;
     margin-right: 20px;
+    width: 100px;
 }
 
 .ratingStarIndividual {

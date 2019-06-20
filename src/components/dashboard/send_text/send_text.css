@@ -59,6 +59,11 @@
     float: right;
 }
 
+.sendTextButton:hover {
+    background-color: #8BD8BD;
+    box-shadow: 0px 0px 5px #8BD8BD;
+}
+
 .sendTextWord {
     margin-top: 4px;
     font-size: 15px;

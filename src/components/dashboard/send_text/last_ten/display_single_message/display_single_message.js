@@ -13,8 +13,8 @@ class Display_single_message extends Component {
                     <p className='name'>{this.props.firstName}</p>
                     <p className='name'>{this.props.lastName}</p>
                 </div>
-                <p className='displayMessageItem'>{this.props.date}</p>
-                <p className='displayMessageItem'>{this.props.interactionStatus}</p>
+                <p className='displayMessageItemLastTen'>{this.props.date}</p>
+                <p className='displayMessageItemLastTen'>{this.props.interactionStatus}</p>
             </div>
         )
     }

@@ -16,6 +16,8 @@
     z-index: 10;
     box-shadow: 0px 0px 14px black;
     height: 92vh;
+    position: fixed;
+    left: 5%;
 }
 
 .sendAndGraph {

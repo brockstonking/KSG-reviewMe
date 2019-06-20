@@ -10,15 +10,16 @@ class Dashboard extends Component {
         super(props);
     }
 
-    componentDidMount(){
-        this.verify();
-    }
-
-    verify(){
-        axios.get('/auth/session')
+    componentWillMount(){
+        axios.get('/auth/getsession')
         .then( results => {
+            if (!results.data) {
+                window.alert(`It looks like you are logged out of your account. Please log in to continue.`)
+                this.props.history.push('/')
+            }
         })
     }
+
     render(){
         return(
             <div className='dashboardParent'>
@@ -26,10 +27,10 @@ class Dashboard extends Component {
                 <div className='dashboardDisplayComponents'>
                     Dashboard
                     <Nav />
-                <div className='sendAndGraph'>
-                    <Send_text />
-                    <Graph_reviews />
-                </div>
+                    <div className='sendAndGraph'>
+                        <Send_text />
+                        <Graph_reviews />
+                    </div>
                 </div>
             </div>
         )

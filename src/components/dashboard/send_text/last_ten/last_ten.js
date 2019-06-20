@@ -30,7 +30,9 @@ class Last_ten extends Component {
                 <div className='lastTenTitleDiv'>
                     <h3 className='lastTenTitle'>Last ten messages sent</h3>
                 </div>
+                <div className='lastTenBodyDiv'>
                 { lastTen }
+                </div>
             </div>
         )
     }
