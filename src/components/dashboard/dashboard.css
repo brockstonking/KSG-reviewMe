@@ -22,5 +22,6 @@
 
 .sendAndGraph {
     display: flex;
+    flex-wrap: wrap;
     height: 86vh;
 }

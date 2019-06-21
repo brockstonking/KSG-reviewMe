@@ -4,6 +4,7 @@ const massive = require('massive');
 const bodyParser = require('body-parser'); 
 const cors = require('cors');
 const session = require('express-session');
+const path = require('path');
 
 const app = express();
 
@@ -27,7 +28,7 @@ app.use(session({
   cookie: { maxAge: 1200000 }
 }))
 
-app.use(express.static(path.join(_dirname, '/build')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use( (req, res, next) => {
   console.log(Date(), req);
@@ -38,7 +39,7 @@ app.use(require('./router'));
 
 app.get('/*', (req, res) => {
   res.sendFile('index.html', {
-    root: path.join(_dirname, "build")
+    root: path.join(__dirname, "build")
   })
 });
 

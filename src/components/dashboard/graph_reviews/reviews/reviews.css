@@ -1,5 +1,5 @@
 .reviewsParent {
     margin-top: 25px;
-    overflow: auto;
+    overflow: scroll;
     height: 30vh;
 }

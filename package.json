@@ -15,6 +15,8 @@
     "express-winston": "^3.1.0",
     "localtunnel": "^1.9.2",
     "massive": "^5.11.0",
+    "ngrok": "^3.2.0",
+    "path": "^0.12.7",
     "react": "^16.8.6",
     "react-chartkick": "^0.3.1",
     "react-dom": "^16.8.6",
