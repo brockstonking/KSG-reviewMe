@@ -8,12 +8,12 @@ const path = require('path');
 
 const app = express();
 
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const { SERVER_PORT, DASHBOARD_URL, SESSION_SECRET } = process.env;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-massive(CONNECTION_STRING)
+massive(DASHBOARD_URL)
   .then(dbInstance => {
     app.set("db", dbInstance);
   })
