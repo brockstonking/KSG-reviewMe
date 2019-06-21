@@ -24,4 +24,5 @@
     display: flex;
     flex-wrap: wrap;
     height: 86vh;
+    z-index: 10;
 }
