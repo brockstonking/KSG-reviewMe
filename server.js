@@ -39,7 +39,7 @@ app.use( (req, res, next) => {
 
 app.use(require('./router'));
 
-var server_host = process.env.YOUR_HOST || '0.0.0.0';
+var server_host = '0.0.0.0';
 const port = SERVER_PORT || 4005
 
 app.get('/*', (req, res) => {
