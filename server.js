@@ -28,6 +28,8 @@ app.use(session({
   cookie: { maxAge: 1200000 }
 }))
 
+
+
 app.use(express.static(path.join(__dirname, '/build')));
 
 app.use( (req, res, next) => {
