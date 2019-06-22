@@ -39,12 +39,15 @@ app.use( (req, res, next) => {
 
 app.use(require('./router'));
 
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+const port = SERVER_PORT || 4005
+
 app.get('/*', (req, res) => {
   res.sendFile('index.html', {
     root: path.join(__dirname, "build")
   })
 });
 
-app.listen(SERVER_PORT, () => {
-    console.log(`Listening on port ${ SERVER_PORT }`);
+app.listen(port, server_host, () => {
+    console.log(`Listening on port ${ port }`);
 })
