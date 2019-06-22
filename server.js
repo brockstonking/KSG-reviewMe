@@ -8,7 +8,7 @@ const path = require('path');
 
 const app = express();
 
-const { SERVER_PORT, DATABASE_URL, SESSION_SECRET } = process.env;
+const { PORT, DATABASE_URL, SESSION_SECRET } = process.env;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -40,7 +40,7 @@ app.use( (req, res, next) => {
 app.use(require('./router'));
 
 var server_host = '0.0.0.0';
-const port = SERVER_PORT || 4005
+const port = PORT || 4005
 
 app.get('/*', (req, res) => {
   res.sendFile('index.html', {
