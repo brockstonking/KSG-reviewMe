@@ -3,14 +3,14 @@ import './direct_customer_feedback.css';
 import Nav from '../nav/Nav';
 import axios from 'axios';
 import FeedbackDisplaySingle from './feedback_display_single/feedback_display_single';
+import { connect } from 'react-redux';
 
 class DirectCustomerFeedback extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            feedback: [],
-            businessName: ''
+            feedback: []
         }
     }
 
@@ -27,9 +27,6 @@ class DirectCustomerFeedback extends Component {
     componentDidMount(){
         axios.get('/auth/getsession')
         .then( results => {
-            this.setState({
-                businessName: results.data.businessName
-            })
             axios.post('/api/customerfeedback', { business_id: results.data.business_id })
             .then( results => {
                 this.setState({
@@ -49,7 +46,7 @@ class DirectCustomerFeedback extends Component {
                     <div className='dashboardDisplayComponents'>
                         <Nav />
                         <div className='feedbacListDisplayDiv'>
-                            <h2>All thumbs down comments for { this.state.businessName }</h2>
+                            <h2>All thumbs down comments for { this.props.businessName }</h2>
                             { feedbackList }
                         </div>
                     </div>
@@ -58,4 +55,11 @@ class DirectCustomerFeedback extends Component {
     }
 }
 
-export default DirectCustomerFeedback;
+const mapStateToProps = (state) => {
+    const { businessName } = state;
+    return {
+        businessName: businessName
+    }
+}
+
+export default connect(mapStateToProps, null)(DirectCustomerFeedback);

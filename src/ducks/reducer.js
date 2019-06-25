@@ -1,15 +1,15 @@
 let initialState = {
-    business: ''
+    businessName: ''
 }
 
+const SET_BUSINESS_NAME = 'SET_BUSINESS_NAME';
 
 
-export const businessInfo = (username, profilePicture) => {
+export const businessInfo = (businessName) => {
     return {
-        type: 'DEFINE_USER',
+        type: 'SET_BUSINESS_NAME',
         payload: {
-            username: username,
-            profilePicture: profilePicture
+            businessName: businessName
         }
     }
 
@@ -19,6 +19,11 @@ const reducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+        case SET_BUSINESS_NAME:
+            return {
+                ...state,
+                businessName: payload.businessName
+            }
         default:
             return state
     }

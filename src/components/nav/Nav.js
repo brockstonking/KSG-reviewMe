@@ -3,6 +3,8 @@ import './Nav.css';
 import MenuItemDisplay from './menu_display/menu_display';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as Actions from './../../ducks/reducer';
 
 class Nav extends Component {
     constructor(props){
@@ -22,9 +24,11 @@ class Nav extends Component {
         })
     }
 
-    logout(){
+    logout = () => {
         axios.post('/auth/logout')
         .then(results => {
+            debugger
+            this.props.businessInfo('')
             console.log('logged out')
         })
     }
@@ -68,4 +72,4 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+export default connect(state => state, Actions)(Nav);

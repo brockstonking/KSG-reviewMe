@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Auth.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { businessInfo } from './../../ducks/reducer';
 
 class Auth extends Component {
     constructor(props){
@@ -33,6 +35,8 @@ class Auth extends Component {
         axios.post('/auth/login', { username: this.state.username, password: this.state.password })
         .then( results => {
             if (results.data.is_admin === false) {
+                this.props.setBusinessInfo(results.data.businessName)
+                debugger
                 this.props.history.push('/dashboard');
             } else {
                 this.props.history.push('/contactus')
@@ -74,4 +78,8 @@ class Auth extends Component {
     }
 }
 
-export default Auth;
+const mapDispatchToProps = {
+    setBusinessInfo: businessInfo
+}
+
+export default connect(null, mapDispatchToProps)(Auth);

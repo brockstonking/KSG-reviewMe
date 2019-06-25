@@ -3,13 +3,13 @@ import './all_messages.css';
 import Nav from './../nav/Nav';
 import axios from 'axios';
 import DisplayAllIndividual from './display_all_individual/display_all_individual';
+import { connect } from 'react-redux';
 
 class AllMessages extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            businessName: '',
             businessId: null,
             allMessagesSent: []
         }
@@ -25,7 +25,6 @@ class AllMessages extends Component{
                 this.props.history.push('/')
             } else {
                 this.setState({
-                    businessName: results.data.businessName,
                     businessId: results.data.business_id
                 })
                 axios.post('/api/message/getall', { business_id: this.state.businessId })
@@ -48,7 +47,7 @@ class AllMessages extends Component{
                 <div className='dashboardDisplayComponents'>
                     <Nav />
                     <div className='allSentContentDiv'>
-                        <h2 className='allSentContentTitle'>All messages sent from { this.state.businessName }</h2>
+                        <h2 className='allSentContentTitle'>All messages sent from { this.props.businessName }</h2>
                     </div>
                     <div className='messageListDiv'>
                         { messageList }
@@ -59,4 +58,11 @@ class AllMessages extends Component{
     }
 }
 
-export default AllMessages;
+const mapStateToProps = (state) => {
+    const { businessName } = state;
+    return {
+        businessName: businessName
+    }
+}
+
+export default connect(mapStateToProps, null)(AllMessages);

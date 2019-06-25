@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import store from './ducks/store';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+  }
   render(){
     return (
       <Provider store={ store }>
