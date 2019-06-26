@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const clientViewController = require('./../controllers/clientViewControllers');
+const adminController = require('./../controllers/adminControllers');
 
 router.post('/auth/login', clientViewController.login);
 router.get('/auth/session', clientViewController.verify)
@@ -18,5 +19,6 @@ router.post('/api/message/thumbsdown', clientViewController.thumbsDown);
 router.post('/api/submitcustomerfeedback', clientViewController.submitCustomerFeedback);
 router.post('/api/message/getall', clientViewController.getAllSentForBusiness);
 router.post('/api/customerfeedback', clientViewController.getBusinessFeedback);
+router.post('/register/businessName', adminController.registerBusinessName);
 
 module.exports = router;

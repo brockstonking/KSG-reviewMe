@@ -8,6 +8,7 @@ import ThankYou from './components/customer_feedback/thank_you/thank_you';
 import AllMessages from './components/all_messages/all_messages';
 import DirectCustomerFeedback from './components/direct_customer_feedback/direct_customer_feedback';
 import ContactUs from './components/contact_us/contact_us';
+import AddClient from './components/admin/add_client/add_client';
 
 export default (
         <Switch>
@@ -19,5 +20,6 @@ export default (
             <Route path='/allmessages' component={ AllMessages } />
             <Route path='/directfeedback' component={ DirectCustomerFeedback } />
             <Route path='/contactus' component={ ContactUs } />
+            <Route path='/admin/addclient' component={ AddClient } /> 
         </Switch>
 )

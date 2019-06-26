@@ -27,9 +27,7 @@ class Nav extends Component {
     logout = () => {
         axios.post('/auth/logout')
         .then(results => {
-            debugger
             this.props.businessInfo('')
-            console.log('logged out')
         })
     }
 
