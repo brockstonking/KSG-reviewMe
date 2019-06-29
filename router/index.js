@@ -20,5 +20,6 @@ router.post('/api/submitcustomerfeedback', clientViewController.submitCustomerFe
 router.post('/api/message/getall', clientViewController.getAllSentForBusiness);
 router.post('/api/customerfeedback', clientViewController.getBusinessFeedback);
 router.post('/register/businessName', adminController.registerBusinessName);
+router.post('/register/user', adminController.registerUser);
 
 module.exports = router;

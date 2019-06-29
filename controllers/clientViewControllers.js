@@ -85,7 +85,6 @@ module.exports = {
                 .then( results => {
                     const messageId = results[0].message_id;
                     // const long_url = `https://myfirstapplicationbking.herokuapp.com/feedback/${ messageId }`; 
-                    const long_url = 'https://www.facebook.com/kristen.leighann.price?__tn__=%2CdC-R-R&eid=ARCh7n5E31agvQzff1ccU5j0XmFF1B8mrRiQ19EO5o3HmMh1qokE381kaMtuojVd_lOJe7ktJHevTBMK&hc_ref=ARTyjAIvUBvmjGgNx6o4TTbln2GhE9fMGBlC5ix32gc6JONgvW1HhBWTAcUpYXzOxDg&fref=nf';
                     const link = `https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`
                     axios.get(link)
                     .then( results => {

@@ -14,12 +14,13 @@ class AddClient extends Component {
             userFirstName: '',
             userLastName: '',
             email: '',
-            manager: true,
+            manager: 'false',
             locationName: '',
             locationNickname: '',
             locationTextMessage: '',
             locationImageURL: '',
-            businessId: null
+            businessId: null,
+            registered: false
         }
     }
 
@@ -30,24 +31,56 @@ class AddClient extends Component {
     }
 
     changeCheckbox = () => {
-        if (this.state.manager === true) {
+        if (this.state.manager === 'true') {
             this.setState({
-                manager: false
+                manager: 'false'
             })
         } else {
             this.setState({
-                manager: true
+                manager: 'true'
             })
         }
     }
 
+    registerUser = () => {
+        if (this.state.registered){
+            if (this.state.password === this.state.reenterPassword){
+                this.setState({
+                    businessId: null,
+                    username: '',
+                    password: '',
+                    reenterPassword: '',
+                    userFirstName: '',
+                    userLastName: '',
+                    email: '',
+                    manager: 'false'
+                })
+                axios.post('/register/user', { business_id: this.state.businessId, username: this.state.username, password: this.state.password, firstName: this.state.userFirstName, lastName: this.state.userLastName, email: this.state.email, manager: this.state.manager })
+                .then( results => {
+                    debugger
+                })
+            } else {
+                window.alert('Passwords do not match')
+            }
+        } else {
+            window.alert('Please register business name before adding users and locations.')
+        }
+    }
+
     registerBusiness = () => {
-        axios.post('/register/businessname', { businessName: this.state.businessName })
-        .then( results => {
-            this.setState({
-                businessId: results.data.business_id
+        debugger
+        if (this.state.businessName){
+            axios.post('/register/businessname', { businessName: this.state.businessName })
+            .then( results => {
+                this.setState({
+                    businessId: results.data.business_id,
+                    registered: true,
+                    businessName: ''
+                })
             })
-        })
+        } else {
+            window.alert('Please enter a business name to register')
+        }
     }
 
     render = () => {
@@ -55,7 +88,7 @@ class AddClient extends Component {
             <div className='addClientPageParent'>
                 <div className='addClientBusinessNameReqDiv aCTitleAndInput'>
                     <p className='addClientBusinessNameTitle'>Business name:</p>
-                    <input className='addClientBusinessNameInput' required name='businessName' onChange={ e => this.handleInputs(e) } />
+                    <input className='addClientBusinessNameInput' name='businessName' onChange={ e => this.handleInputs(e) } />
                     <button onClick={ this.registerBusiness } >Register</button>
                 </div>
                 <div className='addClientUsersDiv'>
@@ -83,8 +116,9 @@ class AddClient extends Component {
                         </div>
                         <div className='aCManagerRD aCTitleAndInput'>
                             <p className='aCManagerRT'>Manager:</p>
-                            <input type='checkbox' className='aCManagerI' value={this.state.manager} onClick={ this.changeCheckbox } />
+                            <input type='checkbox' className='aCManagerI' onClick={ this.changeCheckbox } />
                         </div>
+                        <button onClick={ this.registerUser } >Register user</button>
                     </div>
                     <div className='addClientDisplayUsersDiv'>
 

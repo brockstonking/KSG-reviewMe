@@ -34,15 +34,24 @@ class Send_text extends Component {
     }
 
     sendText(){
-        axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber })
-        .then (results => {
-            this.setState({
-                firstName: '',
-                lastName: '',
-                phoneNumber: ''
-            })
-            window.location.reload();
-        })   
+        debugger
+        if (this.state.firstName === ''){
+            window.alert('Please enter a first name')
+        } else {
+            if (this.state.phoneNumber.split().length === 10){
+                axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber })
+                .then (results => {
+                    this.setState({
+                        firstName: '',
+                        lastName: '',
+                        phoneNumber: ''
+                    })
+                    window.location.reload();
+                })
+            } else {
+                window.alert('Oops! It looks like this phone number was entered incorrectly. Please make sure it is correct and try again.')
+            }
+        }
     }
 
     render(){
