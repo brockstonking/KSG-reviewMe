@@ -84,14 +84,13 @@ module.exports = {
             dbInstance.add_message_to_history([firstName, lastName, phoneNumber, req.session.user.user_id, 'Unopened', location_id, messageDate, messageDateClass.getMonth() + 1, messageDateClass.getFullYear()])
                 .then( results => {
                     const messageId = results[0].message_id;
-                    // const long_url = `https://myfirstapplicationbking.herokuapp.com/feedback/${ messageId }`; 
+                    const long_url = `https://myfirstapplicationbking.herokuapp.com/feedback/${ messageId }`; 
                     const link = `https://api-ssl.bitly.com/v3/link/lookup?url=${ encodeURIComponent(long_url) }&access_token=${ OATH_BITLY_TOKEN }`
                     axios.get(link)
                     .then( results => {
-                        debugger
                         const bitlyLink = results.data.data.link_lookup[0].aggregate_link;
                         // const bitlyLink = `https://8be91ea9.ngrok.io/feedback/${ messageId }`
-                        const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ bitlyLink }`;
+                        const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ link }`;
 
                         client.messages
                         .create({
