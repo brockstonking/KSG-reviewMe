@@ -90,7 +90,7 @@ module.exports = {
                     .then( results => {
                         const bitlyLink = results.data.data.link_lookup[0].aggregate_link;
                         // const bitlyLink = `https://8be91ea9.ngrok.io/feedback/${ messageId }`
-                        const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ link }`;
+                        const message = `Hello ${ firstName },\n\n` + messageBase + `\n\n${ long_url }`;
 
                         client.messages
                         .create({

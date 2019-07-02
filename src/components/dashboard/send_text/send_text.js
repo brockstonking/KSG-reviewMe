@@ -34,11 +34,10 @@ class Send_text extends Component {
     }
 
     sendText(){
-        debugger
         if (this.state.firstName === ''){
             window.alert('Please enter a first name')
         } else {
-            if (this.state.phoneNumber.split().length === 10){
+            if (this.state.phoneNumber.split('').length === 10){
                 axios.post('/api/sendmessage', { lastName: this.state.lastName, location_id: this.state.location_id, firstName: this.state.firstName, phoneNumber: this.state.phoneNumber })
                 .then (results => {
                     this.setState({
